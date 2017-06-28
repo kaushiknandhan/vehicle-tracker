@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
 		mail.setFrom("mailsender9009@gmail.com");
 		mail.setTo("kaushik9nandhan@gmail.com");
 		mail.setSubject("Car tracker HIGH Alert");
-		mail.setText("Hello Admin, "+existingAlert.getPriority()+" Alert found. Reason: " + existingAlert.getMessage());
+		mail.setText("Hello Admin, "+existingAlert.getPriority()+" Alert found for the vehicle with VIN "+existingAlert.getVin()+". Reason: " + existingAlert.getMessage());
 		javaMailSender.send(mail);
 	}
 
