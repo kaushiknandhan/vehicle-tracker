@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import io.tracker.domain.Alert;
@@ -36,6 +37,7 @@ public class ReadingServiceImpl implements ReadingService {
 	@Autowired
 	private EmailService emailService;
 
+	@Async
 	public Reading saveReading(Reading reading) {
 
 		// Persist the tires information of a reading
@@ -47,6 +49,7 @@ public class ReadingServiceImpl implements ReadingService {
 
 		// Check for any Alerts present in the readings
 		 checkForAlerts(existingReading);
+		 checkForTireAlerts(existingReading);
 
 		return existingReading;
 	}
@@ -70,8 +73,7 @@ public class ReadingServiceImpl implements ReadingService {
 				if (existingReading.isEngineCoolantLow() == true) {
 					createAlert("The Engine Coolant is Low for the Vehicle", "Low", existingReading.getVin(), new Date());
 				}
-
-				checkForTireAlerts(existingReading);
+				
 	}
 
 	private void checkForTireAlerts(Reading existingReading) {
