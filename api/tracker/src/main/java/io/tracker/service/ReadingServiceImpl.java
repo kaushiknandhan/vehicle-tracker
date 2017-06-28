@@ -17,6 +17,7 @@ import io.tracker.domain.Reading;
 import io.tracker.domain.Tire;
 import io.tracker.domain.Vehicle;
 import io.tracker.exception.TimeFormatException;
+import io.tracker.exception.VehicleNotFound;
 import io.tracker.repository.AlertRepository;
 import io.tracker.repository.ReadingRepository;
 import io.tracker.repository.TireRepository;
@@ -46,10 +47,15 @@ public class ReadingServiceImpl implements ReadingService {
 
 		// Persist The Readings information of a vehicle
 		Reading existingReading = readingRepository.save(reading);
-
-		// Check for any Alerts present in the readings
-		 checkForAlerts(existingReading);
-		 checkForTireAlerts(existingReading);
+		
+		if(vehicleRepository.findByVin(existingReading.getVin()) != null){
+			// Check for any Alerts present in the readings
+			 checkForAlerts(existingReading);
+			 checkForTireAlerts(existingReading);
+		}else{
+			throw new VehicleNotFound("No Vehicle present with the VIN "+existingReading.getVin());
+		}
+		
 
 		return existingReading;
 	}
@@ -112,7 +118,7 @@ public class ReadingServiceImpl implements ReadingService {
 		Alert existingAlert = alertRepository.save(alert);
 		
 		if (existingAlert.getPriority().equals("HIGH")) {
-		//	sendEmailAlert(existingAlert);
+			sendEmailAlert(existingAlert);
 		}		
 	}
 	
