@@ -8,6 +8,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Service;
 
 import io.tracker.domain.Alert;
@@ -32,6 +33,8 @@ public class ReadingServiceImpl implements ReadingService {
 	private VehicleRepository vehicleRepository;
 	@Autowired
 	private AlertRepository alertRepository;
+	@Autowired
+	private EmailService emailService;
 
 	public Reading saveReading(Reading reading) {
 
@@ -69,9 +72,6 @@ public class ReadingServiceImpl implements ReadingService {
 				}
 
 				checkForTireAlerts(existingReading);
-
-
-		
 	}
 
 	private void checkForTireAlerts(Reading existingReading) {
@@ -98,9 +98,7 @@ public class ReadingServiceImpl implements ReadingService {
 					"The Rear Right tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
 							+ existingReading.getTires().getRearRight(),
 					"Low", existingReading.getVin(), new Date());
-		}
-
-		
+		}		
 	}
 
 	private void createAlert(String message, String priority, String vin, Date timestamp) {
@@ -113,8 +111,15 @@ public class ReadingServiceImpl implements ReadingService {
 		
 		if (existingAlert.getPriority().equals("HIGH")) {
 		//	sendEmailAlert(existingAlert);
+		}		
+	}
+	
+	private void sendEmailAlert(Alert existingAlert) {
+		try {
+			 emailService.sendEmailAlert(existingAlert);
+		} catch (MailException e) {
+			System.out.println(e.getMessage());
 		}
-		
 	}
 
 	private Tire saveTire(Tire newTire) {
