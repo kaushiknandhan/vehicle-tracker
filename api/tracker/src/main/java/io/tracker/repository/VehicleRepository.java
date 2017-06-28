@@ -5,4 +5,6 @@ import io.tracker.domain.Vehicle;
 
 public interface VehicleRepository extends CrudRepository<Vehicle, String>{
 
+	public Vehicle findByVin(String vin);
+
 }
