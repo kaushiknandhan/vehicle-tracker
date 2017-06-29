@@ -37,13 +37,13 @@ public class AlertServiceImpl implements AlertService {
 
 	public List<HighAlerts> getHighAlertDetails() {
 		Date currentDate = new Date();
-		Date beforeMinsDate = getBefore30MinsTime();
+		Date beforeMinsDate = getTimeBefore2Hours();
 		List<HighAlerts> highAlerts = alertRepository.getHighAlertDetails(currentDate, beforeMinsDate);
 		return highAlerts;
 	}
 
 
-	private Date getBefore30MinsTime() {
+	private Date getTimeBefore2Hours() {
 		return new Date(System.currentTimeMillis() - 2 * 60 * 60 * 1000);
 	}
 
