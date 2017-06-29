@@ -49,6 +49,7 @@ public class ReadingServiceImpl implements ReadingService {
 	 * Saves the reading and the Tire Information to the database. Creates
 	 * alerts if found and stores the same in the database. If high alert is
 	 * found, sends an email to the user. Does Asynchronous operation
+	 * @throws VehicleNotFound
 	 */
 	@Async
 	public Reading saveReading(Reading reading) {

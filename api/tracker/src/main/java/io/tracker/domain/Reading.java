@@ -12,7 +12,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
-
+/**
+ * This class is Reading POJO contains readingId(PK),vin,latitude,longitude,timestamp,fuelVolume,speed
+ * engineHp,checkEngineLightOn,engineCoolantLow,cruiseControlOn,engineRpm,tires (One to One)
+ * @author kaushik nandhan
+ *
+ */
 @Table
 @Entity
 @Data

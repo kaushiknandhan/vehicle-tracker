@@ -10,7 +10,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
-
+/**
+ * This class is Alert POJO contains alertId(PK),vin,timestamp,message,priority
+ * @author kaushik nandhan
+ *
+ */
 @Table
 @Entity
 @Data

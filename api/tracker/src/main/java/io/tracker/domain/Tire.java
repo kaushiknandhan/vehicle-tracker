@@ -8,7 +8,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
-
+/**
+ * This class is Tire POJO contains tireId(PK),frontLeft,frontRight,rearLeft,rearRight
+ * @author kaushik nandhan
+ *
+ */
 @Table
 @Entity
 @Data

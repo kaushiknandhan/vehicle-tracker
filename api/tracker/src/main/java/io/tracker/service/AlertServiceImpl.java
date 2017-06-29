@@ -14,13 +14,26 @@ import io.tracker.domain.HighAlerts;
 import io.tracker.exception.NoPriorityFound;
 import io.tracker.repository.AlertRepository;
 
+/**
+ * This class is used to write all the business logic required to get the Alert data
+ * of vehicles from the database based on the parameters and filters.
+ * 
+ * @author kaushik nandhan
+ *
+ */
 @Service
 @Transactional
 public class AlertServiceImpl implements AlertService {
 
 	@Autowired
 	private AlertRepository alertRepository;
-
+	
+	/**
+	 * This method is used to get a vehicle alerts based on the priority selected HIGH,Low,MEDIUM
+	 * @return List<Alert>
+	 * @throws  NoPriorityFound
+	 * 
+	 */
 	public List<Alert> getVehicleAlerts(String vin, String type) {
 		
 		List<Alert> vehicleAlerts =  new ArrayList<>();
@@ -35,6 +48,11 @@ public class AlertServiceImpl implements AlertService {
 	}
 
 
+	/**
+	 * Gets High Alerts for the last 2 hours of all the vehicles in descending order of 
+	 * number of High Alerts
+	 * @return List<HighAlerts>
+	 */
 	public List<HighAlerts> getHighAlertDetails() {
 		Date currentDate = new Date();
 		Date beforeMinsDate = getTimeBefore2Hours();
@@ -42,12 +60,21 @@ public class AlertServiceImpl implements AlertService {
 		return highAlerts;
 	}
 
-
+	/**
+	 * Gets the time stamp before two hours from now
+	 * @return Date
+	 */
 	private Date getTimeBefore2Hours() {
 		return new Date(System.currentTimeMillis() - 2 * 60 * 60 * 1000);
 	}
 
-
+	/**
+	 * Gets the number of Alerts of a vehicle based on priority  
+	 * @param vin
+	 * @param type priorty HIGH/Low/MEDIUM
+	 * @return int
+	 * @throws NoPriorityFound
+	 */
 	public int totalAlertsByVin(String vin, String type) {
 		int totalAlerts = 0;
 		if (type.equals("All")) {

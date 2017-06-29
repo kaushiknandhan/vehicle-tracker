@@ -8,7 +8,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import io.tracker.domain.Reading;
-
+/**
+ * This class is used to get the Vehicle reading information from the database.
+ * Implements CrudRepository 
+ * @author kaushik nandhan
+ *
+ */
 public interface ReadingRepository extends CrudRepository<Reading, String>{
 	
 	/**

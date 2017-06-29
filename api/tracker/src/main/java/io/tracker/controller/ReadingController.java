@@ -16,7 +16,7 @@ import io.tracker.service.ReadingService;
 /**
  * This class is a ReadingController, save the raw readings of a vehicle and get the readings of the vehicle
  * depending on the timestamp
- * Injects VehicleService
+ * Injects ReadingService
  * @author kaushik nandhan
  *
  */

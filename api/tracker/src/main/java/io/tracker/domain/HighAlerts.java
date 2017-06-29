@@ -1,7 +1,11 @@
 package io.tracker.domain;
 
 import lombok.Data;
-
+/**
+ * This class is HighAlerts POJO contains vin,alertCount.
+ * @author kaushik nandhan
+ *
+ */
 @Data
 public class HighAlerts {
 

@@ -6,13 +6,21 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import io.tracker.domain.Alert;
-
+/**
+ * This class is used to send Email regarding HIGH Alerts to a User
+ * @author kaushik nandhan
+ *
+ */
 @Service
 public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private JavaMailSender javaMailSender;
 
+	/**
+	 *send Email to a user regarding the Alert condition obtained from the redings
+	 *@param Alert
+	 */
 	public void sendEmailAlert(Alert existingAlert) {
 		SimpleMailMessage mail = new SimpleMailMessage();
 

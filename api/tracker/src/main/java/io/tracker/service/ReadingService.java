@@ -4,6 +4,13 @@ import java.util.List;
 
 import io.tracker.domain.Reading;
 
+/**
+ * This class is used to write all the business logic required to get the data
+ * of Reading entity from the database based on the parameters and filters.
+ * 
+ * @author kaushik nandhan
+ *
+ */
 public interface ReadingService {
 
 	/**
