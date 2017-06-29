@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import io.tracker.domain.Vehicle;
 import io.tracker.repository.VehicleRepository;
 /**
- * This class is used to write all the business logic required to get the data from the database based 
+ * This class is used to write all the business logic required to get the data of vehicle entity from the database based 
  * on the parameters and filters. 
  * @author kaushik nandhan
  *
