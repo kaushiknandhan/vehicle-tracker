@@ -47,66 +47,57 @@ public class ReadingServiceImpl implements ReadingService {
 
 		// Persist The Readings information of a vehicle
 		Reading existingReading = readingRepository.save(reading);
-		
-		if(vehicleRepository.findByVin(existingReading.getVin()) != null){
+
+		if (vehicleRepository.findByVin(existingReading.getVin()) != null) {
 			// Check for any Alerts present in the readings
-			 checkForAlerts(existingReading);
-			 checkForTireAlerts(existingReading);
-		}else{
-			throw new VehicleNotFound("No Vehicle present with the VIN "+existingReading.getVin());
+			checkForAlerts(existingReading);
+			checkForTireAlerts(existingReading);
+		} else {
+			throw new VehicleNotFound("No Vehicle present with the VIN " + existingReading.getVin());
 		}
-		
 
 		return existingReading;
 	}
 
 	private void checkForAlerts(Reading existingReading) {
 		// Get the Vehicle servicing information.
-				Vehicle existingVehicle = vehicleRepository.findByVin(existingReading.getVin());
+		Vehicle existingVehicle = vehicleRepository.findByVin(existingReading.getVin());
 
-				if (existingReading.getEngineRpm() > existingVehicle.getRedlineRpm()) {
-					createAlert("EngineRpm of the vehicle is Greater than the RedlineRpm", "HIGH", existingReading.getVin(),
-							new Date());
+		if (existingReading.getEngineRpm() > existingVehicle.getRedlineRpm()) {
+			createAlert("EngineRpm of the vehicle is Greater than the RedlineRpm", "HIGH", existingReading.getVin(),
+					new Date());
 
-				}
-				if (existingReading.getFuelVolume() < 0.10 * existingVehicle.getMaxFuelVolume()) {
-					createAlert("Vehicle's fuel volume is less than 10% of the Max Fuel voume", "MEDIUM",
-							existingReading.getVin(), new Date());
-				}
-				if (existingReading.isCheckEngineLightOn() == true) {
-					createAlert("The Check Engine Light is On for the Vehicle", "Low", existingReading.getVin(), new Date());
-				}
-				if (existingReading.isEngineCoolantLow() == true) {
-					createAlert("The Engine Coolant is Low for the Vehicle", "Low", existingReading.getVin(), new Date());
-				}
-				
+		}
+		if (existingReading.getFuelVolume() < 0.10 * existingVehicle.getMaxFuelVolume()) {
+			createAlert("Vehicle's fuel volume is less than 10% of the Max Fuel voume", "MEDIUM",
+					existingReading.getVin(), new Date());
+		}
+		if (existingReading.isCheckEngineLightOn() == true) {
+			createAlert("The Check Engine Light is On for the Vehicle", "Low", existingReading.getVin(), new Date());
+		}
+		if (existingReading.isEngineCoolantLow() == true) {
+			createAlert("The Engine Coolant is Low for the Vehicle", "Low", existingReading.getVin(), new Date());
+		}
+
 	}
 
 	private void checkForTireAlerts(Reading existingReading) {
 		if (existingReading.getTires().getFrontLeft() < 32 || existingReading.getTires().getFrontLeft() > 36) {
-			createAlert(
-					"The Front Left tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
-							+ existingReading.getTires().getFrontLeft(),
-					"Low", existingReading.getVin(), new Date());
+			createAlert("The Front Left tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
+					+ existingReading.getTires().getFrontLeft(), "Low", existingReading.getVin(), new Date());
 		}
 		if (existingReading.getTires().getFrontRight() < 32 || existingReading.getTires().getFrontRight() > 36) {
-			createAlert(
-					"The Front Right tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
-							+ existingReading.getTires().getFrontRight(),
-					"Low", existingReading.getVin(), new Date());
+			createAlert("The Front Right tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
+					+ existingReading.getTires().getFrontRight(), "Low", existingReading.getVin(), new Date());
 		}
 		if (existingReading.getTires().getRearLeft() < 32 || existingReading.getTires().getRearLeft() > 36) {
-			createAlert(
-					"The Rear Left tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
-							+ existingReading.getTires().getRearLeft(),
-					"Low", existingReading.getVin(), new Date());
+			createAlert("The Rear Left tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
+					+ existingReading.getTires().getRearLeft(), "Low", existingReading.getVin(), new Date());
 		}
 		if (existingReading.getTires().getRearRight() < 32 || existingReading.getTires().getRearRight() > 36) {
-			createAlert(
-					"The Rear Right tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
-							+ existingReading.getTires().getRearRight(),
-					"Low", existingReading.getVin(), new Date());
-		}		
+			createAlert("The Rear Right tire pressure is not accurate EXPECTED: 32<=TP<=36, ACTUAL: "
+					+ existingReading.getTires().getRearRight(), "Low", existingReading.getVin(), new Date());
+		}
 	}
 
 	private void createAlert(String message, String priority, String vin, Date timestamp) {
@@ -116,15 +107,14 @@ public class ReadingServiceImpl implements ReadingService {
 		alert.setVin(vin);
 		alert.setTimestamp(timestamp);
 		Alert existingAlert = alertRepository.save(alert);
-		
 		if (existingAlert.getPriority().equals("HIGH")) {
 			sendEmailAlert(existingAlert);
-		}		
+		}
 	}
-	
+
 	private void sendEmailAlert(Alert existingAlert) {
 		try {
-			 emailService.sendEmailAlert(existingAlert);
+			emailService.sendEmailAlert(existingAlert);
 		} catch (MailException e) {
 			System.out.println(e.getMessage());
 		}
@@ -134,15 +124,16 @@ public class ReadingServiceImpl implements ReadingService {
 		return tireRepository.save(newTire);
 	}
 
-
 	public List<Reading> getReadingsWithTime(String vin, String timeType, String time) {
 		List<Reading> vehicleReagings = new ArrayList<>();
 		if (timeType.equals("All")) {
 			vehicleReagings = readingRepository.findByVin(vin);
 		} else {
-			Date currentDate = new Date();
-			Date beforeTime = getBeforeTime(timeType, time);
-			vehicleReagings = readingRepository.findReadingsWithTime(vin, currentDate, beforeTime);
+			 Date currentDate = new Date();
+			 Date beforeTime = getBeforeTime(timeType, time);
+			 vehicleReagings = readingRepository.findReadingsWithTime(vin,
+			 currentDate, beforeTime);
+			
 		}
 		return vehicleReagings;
 	}
