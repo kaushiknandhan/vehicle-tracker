@@ -1,5 +1,6 @@
 package io.tracker.domain;
 
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,7 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-
+/**
+ * This class is POJO bean for Vehicle. Contains vin, model, make, year, redlineRpm, maxFuelVolume, lastServiceDate
+ * @author kaushik nandhan
+ *
+ */
 @Table
 @Entity
 @Data
