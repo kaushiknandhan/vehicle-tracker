@@ -59,8 +59,8 @@ public class AlertController {
 	 * @throws NoPriorityFound
 	 */
 	@RequestMapping(path="/totalcount/{vin}/{type}",method = RequestMethod.GET)
-	public int totalAlertsByVin(@PathVariable(name="vin")String vin,@PathVariable(name="type")String type){
-		int totalAlerts = alertService.totalAlertsByVin(vin,type);
+	public long totalAlertsByVin(@PathVariable(name="vin")String vin,@PathVariable(name="type")String type){
+		long totalAlerts = alertService.totalAlertsByVin(vin,type);
 		return totalAlerts;
 	}
 }

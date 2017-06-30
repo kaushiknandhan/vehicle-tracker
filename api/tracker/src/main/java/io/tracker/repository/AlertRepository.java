@@ -40,21 +40,4 @@ public interface AlertRepository  extends CrudRepository<Alert, String>{
 	@Query("SELECT new io.tracker.domain.HighAlerts(a.vin,COUNT(a)) FROM Alert a WHERE a.priority='HIGH' AND a.timestamp <= :currentDate AND a.timestamp >= :beforeMinsDate  GROUP BY a.vin ORDER BY COUNT(a) DESC")
 	public List<HighAlerts> getHighAlertDetails(@Param(value = "currentDate")Date currentDate,@Param(value = "beforeMinsDate") Date beforeMinsDate);
 
-	/**
-	 * Gets the total Alerts count of a vehicle
-	 * @param vin
-	 * @return int
-	 */
-	@Query("SELECT COUNT(a) FROM Alert a WHERE a.vin=:vin")
-	public int totalAlertsByVin(@Param(value = "vin") String vin);
-	
-	/**
-	 * Gets the Alert count of a vehicle based on priority type
-	 * @param vin
-	 * @param type
-	 * @return int
-	 */
-	@Query("SELECT COUNT(a) FROM Alert a WHERE a.vin=:vin AND a.priority=:type")
-	public int totalAlertsByVin(@Param(value = "vin") String vin,@Param(value = "type") String type);
-
 }

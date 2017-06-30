@@ -36,6 +36,6 @@ public interface AlertService {
 	 * @return int
 	 * @throws NoPriorityFound
 	 */
-	public int totalAlertsByVin(String vin, String type);
+	public long totalAlertsByVin(String vin, String type);
 
 }

@@ -38,14 +38,36 @@ public class AlertServiceImpl implements AlertService {
 		
 		List<Alert> vehicleAlerts =  new ArrayList<>();
 		if(type.equals("All")){
-			vehicleAlerts = (List<Alert>) alertRepository.findByVinOrderByTimestampDesc(vin);
+			vehicleAlerts = getAlertsByVin(vin);
 		}else if(type.equals("Low") || type.equals("MEDIUM") || type.equals("HIGH")){
-			vehicleAlerts = (List<Alert>) alertRepository.findByVinAndPriorityOrderByTimestampDesc(vin,type);
+			vehicleAlerts = getAlertsByVinAndType(vin,type);
 		}else{
 			throw new NoPriorityFound("No priority of type "+type+ " found");
 		}
 		return vehicleAlerts;
 	}
+
+
+	/**
+	 * Gets a List of Alerts of a vihicle based on priority type
+	 * @param vin
+	 * @param type
+	 * @return List<Alert>
+	 */
+	private List<Alert> getAlertsByVinAndType(String vin, String type) {
+		
+		return (List<Alert>) alertRepository.findByVinAndPriorityOrderByTimestampDesc(vin,type);
+	}
+	/**
+	 * Get all the alerts of a Vehicle
+	 * @param vin
+	 * @return List<Alert>
+	 */
+	private List<Alert> getAlertsByVin(String vin) {
+		
+		return (List<Alert>) alertRepository.findByVinOrderByTimestampDesc(vin);
+	}
+	
 
 
 	/**
@@ -75,16 +97,22 @@ public class AlertServiceImpl implements AlertService {
 	 * @return int
 	 * @throws NoPriorityFound
 	 */
-	public int totalAlertsByVin(String vin, String type) {
-		int totalAlerts = 0;
+	public long totalAlertsByVin(String vin, String type) {
 		if (type.equals("All")) {
-			totalAlerts = alertRepository.totalAlertsByVin(vin);
+			return getAlertsByVin(vin)
+					.stream()
+					.count();
 		}else if(type.equals("Low") || type.equals("MEDIUM") || type.equals("HIGH")){
-			totalAlerts = alertRepository.totalAlertsByVin(vin, type);
+			return getAlertsByVinAndType(vin,type)
+					.stream()
+					.count();
 		}else{
 			throw new NoPriorityFound("No priority of type "+type+ " found");
 		}
-		return totalAlerts;
+		
 	}
+
+
+	
 
 }
