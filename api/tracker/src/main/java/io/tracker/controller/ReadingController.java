@@ -45,7 +45,7 @@ public class ReadingController {
 	}
 	
 	/**
-	 * This method gives the readings of a vehicle depending on the time stamp chosen. 
+	 * This method gives the readings of a vehicle depending on the time stamp chosen.
 	 * @param vin - vin number if vehicle
 	 * @param timeType - MINUTES/HOURS/DAYS
 	 * @param time - 1 to any time
