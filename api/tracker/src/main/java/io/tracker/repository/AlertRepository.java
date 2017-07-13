@@ -40,4 +40,7 @@ public interface AlertRepository  extends CrudRepository<Alert, String>{
 	@Query("SELECT new io.tracker.domain.HighAlerts(a.vin,COUNT(a)) FROM Alert a WHERE a.priority='HIGH' AND a.timestamp <= :currentDate AND a.timestamp >= :beforeMinsDate  GROUP BY a.vin ORDER BY COUNT(a) DESC")
 	public List<HighAlerts> getHighAlertDetails(@Param(value = "currentDate")Date currentDate,@Param(value = "beforeMinsDate") Date beforeMinsDate);
 
+	@Query("SELECT a FROM Alert a WHERE a.vin=:vin AND a.priority='HIGH' AND a.timestamp <= :currentDate AND a.timestamp >= :beforeMinsDate ORDER BY a.timestamp DESC")
+	public List<Alert> getHighAlertsBefore2Hours(@Param(value = "vin")String vin,@Param(value = "currentDate") Date currentDate,@Param(value = "beforeMinsDate") Date beforeMinsDate);
+
 }

@@ -41,7 +41,11 @@ public class AlertServiceImpl implements AlertService {
 			vehicleAlerts = getAlertsByVin(vin);
 		}else if(type.equals("Low") || type.equals("MEDIUM") || type.equals("HIGH")){
 			vehicleAlerts = getAlertsByVinAndType(vin,type);
-		}else{
+		}else if(type.equals("HIGHALERTS")){
+			Date beforeMinsDate = getTimeBefore2Hours();
+			vehicleAlerts = alertRepository.getHighAlertsBefore2Hours(vin,new Date(), beforeMinsDate);
+		}
+		else{
 			throw new NoPriorityFound("No priority of type "+type+ " found");
 		}
 		return vehicleAlerts;
