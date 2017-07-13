@@ -6,14 +6,19 @@
     angular.module('tracker')
         .controller('homeController',homeController);
 
-    homeController.$inject = [];
-    function homeController() {
+    homeController.$inject = ['vehicleService'];
+    function homeController(vehicleService) {
         var homeVm = this;
         homeVm.vehicles = [];
 
         init();
         function init() {
-            console.log('init function called');
+            vehicleService.getVehicles()
+                .then(function (vehicles) {
+                    homeVm.vehicles = vehicles;
+                },function (error) {
+                    console.log(error);
+                })
         }
     }
 })();
