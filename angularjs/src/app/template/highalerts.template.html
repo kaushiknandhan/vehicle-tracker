@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="alert-content" ng-class="{'Low':'low-color','MEDIUM':'medium-color','HIGH':'high-color'}[alert.priority]" ng-repeat="alert in highalertsVm.alerts">
+        <div class="row">
+            <div class="col-sm-2">
+                <h4><strong>PRIORITY</strong></h4>
+                <p>{{alert.priority}}</p>
+            </div>
+            <div class="col-sm-8">
+                <h4><strong>Reason</strong></h4>
+                <p>{{alert.message}}</p>
+            </div>
+            <div class="col-sm-2">
+                <h4><strong>Time</strong></h4>
+                <p>{{alert.timestamp | date}}</p>
+            </div>
+        </div>
+    </div>
+</div>

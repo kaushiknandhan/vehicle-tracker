@@ -16,6 +16,7 @@
     <!-- endinject -->
 
     <!-- inject:css -->
+    <link rel="stylesheet" href="styles/alert.css">
     <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="styles/nav-bar.css">
     <!-- endinject -->
@@ -31,6 +32,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a ui-sref="home" ui-sref-active="nav-active">Home</a></li>
+            <li><a ui-sref="alerts" ui-sref-active="nav-active">Alerts</a></li>
         </ul>
     </div>
 </nav>
@@ -64,7 +66,11 @@
 <!-- inject:js -->
 <script src="app/app.js"></script>
 <script src="app/service/vehicle.service.js"></script>
+<script src="app/service/alert.service.js"></script>
+<script src="app/filter/sortFilter.filter.js"></script>
 <script src="app/controller/home.controller.js"></script>
+<script src="app/controller/highalerts.controller.js"></script>
+<script src="app/controller/alerts.controller.js"></script>
 <!-- endinject -->
 
 <!-- app:js -->

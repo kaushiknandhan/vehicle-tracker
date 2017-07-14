@@ -14,6 +14,18 @@
                 controller:"homeController",
                 controllerAs:"homeVm"
             })
+            .state("alerts",{
+                url:"/alerts",
+                templateUrl:"app/template/alerts.template.html",
+                controller:"alertsController",
+                controllerAs:"alertsVm"
+            })
+            .state("alerts.highalerts",{
+                url:"/highalerts/:id",
+                templateUrl:"app/template/highalerts.template.html",
+                controller:"highalertsController",
+                controllerAs:"highalertsVm"
+            })
         $urlRouterProvider.otherwise('/home');
     }
 })();
