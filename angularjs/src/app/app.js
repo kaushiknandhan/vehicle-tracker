@@ -44,6 +44,12 @@
                 controller:"vehicleAlertController",
                 controllerAs:"vehicleAlertVm"
             })
+            .state("vehiclesInfo.geolocation",{
+                url:"/geolocation",
+                templateUrl:"app/template/vehicle-geolocation.template.html",
+                controller:"vehicleGeolocationController",
+                controllerAs:"vehicleGeolocationVm"
+            })
         $urlRouterProvider.otherwise('/home');
     }
 })();
