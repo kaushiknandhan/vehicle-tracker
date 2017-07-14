@@ -11,6 +11,7 @@
         var alertVm = this;
         alertVm.getHighAlerts = getHighAlerts;
         alertVm.getVehicleAlerts = getVehicleAlerts;
+        alertVm.getTotalAlertCount = getTotalAlertCount;
 
 
 
@@ -26,6 +27,11 @@
                 .then(successFn,errorFn);
         }
 
+        // Ajax call to get Total number Alerts of a Vehicle from sever
+        function getTotalAlertCount(vehicleId,type) {
+            return $http.get('http://localhost:9009/api/'+'/alerts/totalcount/'+vehicleId+'/'+type)
+                .then(successFn,errorFn);
+        }
 
         // Call back functions for Success and Error Responses
         function successFn(response) {

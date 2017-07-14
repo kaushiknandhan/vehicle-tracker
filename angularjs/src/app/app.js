@@ -26,6 +26,18 @@
                 controller:"highalertsController",
                 controllerAs:"highalertsVm"
             })
+            .state("vehiclesInfo",{
+                url:"/vehicles/:id",
+                templateUrl:"app/template/vehicle.template.html",
+                controller:"vehicleInfoController",
+                controllerAs:"vehicleInfoVm"
+            })
+            .state("vehiclesInfo.overview",{
+            url:"/overview",
+            templateUrl:"app/template/vehicle-overview.template.html",
+            controller:"vehicleOverviewController",
+            controllerAs:"vehicleOverviewVm"
+        })
         $urlRouterProvider.otherwise('/home');
     }
 })();

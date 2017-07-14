@@ -10,12 +10,20 @@
     function vehicleService($http,$q) {
         var vehicleVm = this;
         vehicleVm.getVehicles = getVehicles;
+        vehicleVm.getVehicleInfo = getVehicleInfo;
 
-        // Get All the vehicles preset from the database
+        // Ajax call to get All the vehicles preset from the database
         function getVehicles() {
             return $http.get('http://localhost:9009/api/'+'vehicles')
                 .then(successFn,errorFn);
         }
+
+        // Ajax call to get vehicle Information from sever
+        function getVehicleInfo(vechileId) {
+            return $http.get('http://localhost:9009/api/'+'/vehicles/'+vechileId)
+                .then(successFn,errorFn);
+        }
+
 
         // Call back functions for Success and Error Responses
         function successFn(response) {
