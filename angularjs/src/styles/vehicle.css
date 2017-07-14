@@ -12,17 +12,18 @@
     color: white;
     text-align: center;
 }
-.tabs-active{
-    background-color: #36D1DC !important;
-    color:white !important;
-    border-bottom: 2px solid white;
-}
 .nav-tabs>li>a{
-    background-color:white;
-    color: #36D1DC;
-    border: 1px solid #36D1DC;
+    background-color: white;
+    border-bottom: 4px solid transparent ;
 }
-
+.nav-tabs>li>a:hover{
+    background-color: white;
+    border-bottom: 4px solid #36D1DC ;
+}
+.tabs-active>a{
+    border-bottom: 4px solid #36D1DC !important;
+    background-color: white!important;
+}
 .tab-content{
     margin-top: 10px;
 }

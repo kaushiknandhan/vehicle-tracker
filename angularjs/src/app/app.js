@@ -37,7 +37,13 @@
             templateUrl:"app/template/vehicle-overview.template.html",
             controller:"vehicleOverviewController",
             controllerAs:"vehicleOverviewVm"
-        })
+            })
+            .state("vehiclesInfo.alerts",{
+                url:"/alerts",
+                templateUrl:"app/template/vehicle-alerts.template.html",
+                controller:"vehicleAlertController",
+                controllerAs:"vehicleAlertVm"
+            })
         $urlRouterProvider.otherwise('/home');
     }
 })();

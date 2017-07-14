@@ -6,15 +6,6 @@
     color: white !important;
     background: #36D1DC;
 }
-.nav-tabs>li>a{
-    background-color: white;
-    border-bottom: 4px solid transparent!important;
-}
-.nav-tabs>li>a:hover{
-    background-color: white;
-    border-bottom: 4px solid #5B86E5 !important;
-}
-
 
 .nav-active{
     border-bottom: 4px solid white;

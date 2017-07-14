@@ -6,7 +6,8 @@
             <h3>{{vehicleInfoVm.vehicle.make}}</h3>
             <h4>{{vehicleInfoVm.vehicle.vin}}</h4>
             <ul class="nav nav-tabs">
-                <li><a ui-sref="vehiclesInfo.overview"  ui-sref-active="tabs-active">OverView</a></li>
+                <li  ui-sref-active="tabs-active"><a ui-sref="vehiclesInfo.overview" >OverView</a></li>
+                <li  ui-sref-active="tabs-active"><a  ui-sref="vehiclesInfo.alerts">Alerts<span class="badge badge-color">{{vehicleInfoVm.totalCount}}</span></a></li>
             </ul>
         </div>
     </div>
