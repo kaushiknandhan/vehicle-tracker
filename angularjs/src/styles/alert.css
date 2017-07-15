@@ -1,14 +1,14 @@
 .alert-box{
     padding:5px;
-    width: 70%;
+    width: 100%;
     margin: auto;
-    background-color: white;
+    background-color: white ;
     margin-bottom: 5px;
     text-align: center;
     border-radius:5px;
     border-left: 5px solid #EA384D;
     color: red;
-
+    cursor: pointer;
 }
 .alert-content{
     width: 90%;
@@ -18,6 +18,7 @@
     background-color: white;
     border-left: 5px solid transparent;
     margin-bottom: 1%;
+    box-shadow: 2px 2px 2px grey;
 }
 .high-color{
     border-left: 5px solid #D31027 !important;
@@ -39,4 +40,7 @@
     min-height: 200px;
     max-height: 530px;
     overflow: scroll;
+}
+.high-alert-content-box{
+    padding:1px;
 }

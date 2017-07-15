@@ -12,14 +12,12 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="row" ng-repeat="alert in  alertsVm.highAlerts | sortFilter:alertsVm.sortType" ui-sref="alerts.highalerts({id:alert.vin})"  ui-sref-active="highalert-color">
-                        <div class="alert-box" style="cursor: pointer">
-                            <p>{{alert.vin}} - <strong>({{alert.alertCount}})</strong></p>
-                        </div>
+                <div class="col-sm-3">
+                    <div class="row alert-box" ng-repeat="alert in  alertsVm.highAlerts | sortFilter:alertsVm.sortType" ui-sref="alerts.highalerts({id:alert.vin})"  ui-sref-active="highalert-color">
+                        <p>{{alert.vin}} - <strong>({{alert.alertCount}})</strong></p>
                     </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     <ui-view></ui-view>
                 </div>
             </div>
