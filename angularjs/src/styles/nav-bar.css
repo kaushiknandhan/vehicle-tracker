@@ -1,0 +1,28 @@
+.navbar-nav>li{
+    border-bottom: 2px solid transparent;
+}
+.navbar-brand:hover,.navbar-brand:visited{
+    color:white;
+}
+.navbar-nav>li>a:hover{
+    color: white !important;
+    background: #36D1DC;
+}
+
+.nav-active{
+    border-bottom: 4px solid white;
+    background: #36D1DC !important;
+    color: white !important;
+}
+
+.nav-stacked>li>a:hover,.nav-stacked>li>a:visited{
+    background-color: white !important;
+}
+nav{
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+nav a{
+    color: whitesmoke;
+}

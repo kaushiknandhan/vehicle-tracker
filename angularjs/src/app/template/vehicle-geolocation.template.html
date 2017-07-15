@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="map-box">
+            <h2 class="text-center" ng-if="vehicleGeolocationVm.geolocations.length === 0">No Readings found for 30 minutes from now!!!</h2>
+            <ui-gmap-google-map ng-if="vehicleGeolocationVm.geolocations.length !== 0"  center='vehicleGeolocationVm.center' zoom= 'vehicleGeolocationVm.zoom' >
+                <ui-gmap-marker ng-repeat="location in vehicleGeolocationVm.geolocations" idKey="location.readingId" coords="{latitude:location.latitude,longitude:location.longitude}">
+                    <ui-gmap-window isIconVisibleOnClick="true">
+                        <p>{{location.timestamp | date}}</p>
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+                <polyline path="vehicleGeolocationVm.geolocations" stroke="{color:'blue'}"></polyline>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>

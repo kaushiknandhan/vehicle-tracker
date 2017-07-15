@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tracker">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracker</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/bower_components/angularjs-slider/dist/rzslider.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endinject -->
+
+    <!-- vendor:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/alert.css">
+    <link rel="stylesheet" href="styles/graph.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/map.css">
+    <link rel="stylesheet" href="styles/nav-bar.css">
+    <link rel="stylesheet" href="styles/vehicle.css">
+    <!-- endinject -->
+
+    <!-- app:css -->
+    <!-- endinject -->
+</head>
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="home">Tracker</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="home" ui-sref-active="nav-active">Home</a></li>
+            <li><a ui-sref="alerts" ui-sref-active="nav-active">Alerts</a></li>
+        </ul>
+    </div>
+</nav>
+<ui-view></ui-view>
+
+
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<!-- bower:js -->
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-touch/angular-touch.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="/bower_components/lodash/lodash.js"></script>
+<script src="/bower_components/markerclustererplus/src/markerclusterer.js"></script>
+<script src="/bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+<script src="/bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+<script src="/bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+<script src="/bower_components/js-rich-marker/src/richmarker.js"></script>
+<script src="/bower_components/chart.js/dist/Chart.js"></script>
+<script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="/bower_components/angular-moment/angular-moment.js"></script>
+<!-- endinject -->
+
+<!-- vendor:js -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<script src="app/app.js"></script>
+<script src="app/controller/vehicleOverview.controller.js"></script>
+<script src="app/controller/vehicleInfo.controller.js"></script>
+<script src="app/controller/vehicleHistoryType.controller.js"></script>
+<script src="app/controller/vehicleGeolocation.controller.js"></script>
+<script src="app/controller/vehicleAlert.controller.js"></script>
+<script src="app/controller/home.controller.js"></script>
+<script src="app/controller/highalerts.controller.js"></script>
+<script src="app/controller/alerts.controller.js"></script>
+<script src="app/service/vehicle.service.js"></script>
+<script src="app/service/reading.service.js"></script>
+<script src="app/service/alert.service.js"></script>
+<script src="app/filter/sortFilter.filter.js"></script>
+<script src="app/filter/priority.filter.js"></script>
+<script src="app/directive/alert.directive.js"></script>
+<script src="app/app.constant.js"></script>
+<!-- endinject -->
+
+<!-- app:js -->
+<!-- endinject -->
+</body>
+</html>

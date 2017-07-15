@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-7">
+                <h3 ng-if="alertsVm.isLengthZero()">NO HIGH Alerts!!! From the Last 2 HOURS</h3>
+                <h3 ng-if="!alertsVm.isLengthZero()">HIGH Alerts From the Last 2 HOURS</h3>
+            </div>
+            <div class="col-sm-5">
+                <button  ng-if="!alertsVm.isLengthZero()" class="btn btn-primary " ng-click="alertsVm.sortList()">order</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="row alert-box" ng-repeat="alert in  alertsVm.highAlerts | sortFilter:alertsVm.sortType" ui-sref="alerts.highalerts({id:alert.vin})"  ui-sref-active="highalert-color">
+                        <p>{{alert.vin}} - <strong>({{alert.alertCount}})</strong></p>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <ui-view></ui-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

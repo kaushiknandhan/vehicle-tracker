@@ -1,0 +1,39 @@
+<div class="tab-content">
+<div class="conatiner">
+    <div class="row">
+        <div class="overview-content">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 ><strong>VIN</strong></h4>
+                    <p class="green-color"><strong>{{vehicleOverviewVm.overview.vin}}</strong></p>
+                </div>
+                <div class="col-sm-4">
+                    <h4><strong>MAKE</strong></h4>
+                    <p>{{vehicleOverviewVm.overview.make}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4><strong>MODEL</strong></h4>
+                    <p>{{vehicleOverviewVm.overview.model}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4><strong>YEAR</strong></h4>
+                    <p>{{vehicleOverviewVm.overview.year}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4><strong>READLINE-RPM</strong></h4>
+                    <p>{{vehicleOverviewVm.overview.redlineRpm | number}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4><strong>MAX FUEL VOLUME</strong></h4>
+                    <p>{{vehicleOverviewVm.overview.maxFuelVolume}} ltrs</p>
+                </div>
+            </div>
+
+            <h4 class="red-color last-service"><strong>Last Service </strong>- {{vehicleOverviewVm.overview.lastServiceDate | date}}</h4>
+
+        </div>
+    </div>
+</div>
+</div>

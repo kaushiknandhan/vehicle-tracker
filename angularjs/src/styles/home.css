@@ -1,0 +1,33 @@
+body{
+    background-color: #CCE2FF;
+}
+.main-content{
+    margin-top:7%;
+}
+.vehicle-box{
+    padding: 5px;
+    margin: auto;
+    width: 90%;
+    margin-bottom: 15px;
+    border-left: 5px solid #5B86E5;
+    text-decoration: none;
+    background-color: white;
+}
+.vehicle-box:hover{
+    padding: 5px;
+    margin: auto;
+    width: 90%;
+    margin-bottom: 15px;
+    border-left: 5px solid #36D1DC;
+    background-color: #5B86E5;
+    color: white;
+    -webkit-transition: All 1s; /* Safari */
+    transition: All 1s;
+
+}
+.vehicle-model{
+    color:#36D1DC;
+}
+a:hover{
+    text-decoration: none;
+}

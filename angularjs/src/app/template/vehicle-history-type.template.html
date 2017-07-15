@@ -1,0 +1,107 @@
+<div class="container graph-content">
+    <div class="row" ng-if="vehicleHistoryTypeVm.type === 'All'">
+        <div class="time-buttons">
+            <div class="btn-group time-buttons">
+                <button type="button" class="btn btn-primary" ng-click="vehicleHistoryTypeVm.readingWithTime('DAYS',10)">10 Days</button>
+                <button type="button" class="btn btn-primary" ng-click="vehicleHistoryTypeVm.readingWithTime('HOURS',12)">12 hours</button>
+                <button type="button" class="btn btn-primary"  ng-click="vehicleHistoryTypeVm.readingWithTime('MINUTES',10)">10 mins</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="speed-box">
+            <div ng-if="vehicleHistoryTypeVm.type === 'All' && vehicleHistoryTypeVm.readings.length != 0">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="text-center">Vehicle Speed Graph</h3>
+                        <canvas ng-if="vehicleHistoryTypeVm.speedData.length !== 0" id="line" class="chart chart-line" chart-data="vehicleHistoryTypeVm.speedData"
+                                chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3 class="text-center">Vehicle engineRpm Graph</h3>
+                        <canvas ng-if="vehicleHistoryTypeVm.engineRpm.length !== 0" id="line1" class="chart chart-line" chart-data="vehicleHistoryTypeVm.engineRpm"
+                                chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="text-center">Vehicle engineHp Graph</h3>
+                        <canvas ng-if="vehicleHistoryTypeVm.engineHp.length !== 0" id="line2" class="chart chart-line" chart-data="vehicleHistoryTypeVm.engineHp"
+                                chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3 class="text-center">Vehicle fuelVolume Graph</h3>
+                        <canvas ng-if="vehicleHistoryTypeVm.fuelVolume.length !== 0" id="line3" class="chart chart-line" chart-data="vehicleHistoryTypeVm.fuelVolume"
+                                chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vehicleHistoryTypeVm.type !== 'All'">
+                <div class="row">
+                    <form>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="sel1">Select Time Period</label>
+                                <select class="form-control" id="sel1"  ng-model="vehicleHistoryTypeVm.selectedTime" ng-change="vehicleHistoryTypeVm.changeMaxMinValues()">
+                                    <option ng-repeat="option in vehicleHistoryTypeVm.timesStamps" value="{{option}}">{{option}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <rzslider rz-slider-model="vehicleHistoryTypeVm.slidervalue"  rz-slider-options="vehicleHistoryTypeVm.sliderOptions"></rzslider>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-success" ng-click="vehicleHistoryTypeVm.readingWithTime(vehicleHistoryTypeVm.selectedTime,vehicleHistoryTypeVm.slidervalue)">Analyze</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row"  ng-if="vehicleHistoryTypeVm.speedData.length !== 0 && vehicleHistoryTypeVm.type === 'speed'">
+                    <div class="col-sm-12">
+                        <h3 class="text-center">Vehicle Speed Graph</h3>
+                        <canvas id="lineSpeed" class="chart chart-bar" chart-data="vehicleHistoryTypeVm.speedData"
+                                chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="row" ng-if="vehicleHistoryTypeVm.fuelVolume.length !== 0 && vehicleHistoryTypeVm.type === 'fuelVolume'">
+                    <div class="col-sm-12">
+                        <h3 class="text-center">Vehicle fuelVolume Graph</h3>
+                        <canvas  id="linefuel" class="chart chart-bar" chart-data="vehicleHistoryTypeVm.fuelVolume"
+                                 chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                 chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="row" ng-if="vehicleHistoryTypeVm.engineHp.length !== 0 && vehicleHistoryTypeVm.type === 'engineHp'">
+                    <div class="col-sm-12">
+                        <h3 class="text-center">Vehicle engineHp Graph</h3>
+                        <canvas  id="lineengineHp" class="chart chart-bar" chart-data="vehicleHistoryTypeVm.engineHp"
+                                 chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                 chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="row" ng-if="vehicleHistoryTypeVm.engineRpm.length !== 0 && vehicleHistoryTypeVm.type === 'engineRpm'">
+                    <div class="col-sm-12">
+                        <h3 class="text-center">Vehicle engineRpm Graph</h3>
+                        <canvas  id="lineengineRpm" class="chart chart-bar" chart-data="vehicleHistoryTypeVm.engineRpm"
+                                 chart-labels="vehicleHistoryTypeVm.time" chart-series="vehicleHistoryTypeVm.series" chart-options="vehicleHistoryTypeVm.options"
+                                 chart-dataset-override="vehicleHistoryTypeVm.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

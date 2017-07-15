@@ -1,0 +1,26 @@
+.graph-content{
+    width: 100%;
+    padding:1px;
+    margin: auto;
+    margin-top: 5px;
+    background-color: white;
+    height: auto;
+}
+.time-buttons{
+    margin-left: 20%;
+    margin-top: 5px;
+}
+.graph-nav{
+    margin-top: 5px;
+}
+.graph-nav>li:hover{
+    background-color: white !important;
+}
+.speed-box{
+    margin-top: 10px;
+    padding: 25px;
+}
+.graph-active{
+    border-bottom: 2px solid red;
+    background-color: white !important;
+}

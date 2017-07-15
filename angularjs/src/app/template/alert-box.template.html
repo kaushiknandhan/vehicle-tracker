@@ -1,0 +1,16 @@
+<div class="alert-content text-center" ng-class="{'Low':'low-color','MEDIUM':'medium-color','HIGH':'high-color'}[alertBox.priority]">
+    <div class="row">
+        <div class="col-sm-2">
+            <h4><strong>PRIORITY</strong></h4>
+            <p>{{alertBox.priority}}</p>
+        </div>
+        <div class="col-sm-8">
+            <h4><strong>Reason</strong></h4>
+            <p>{{alertBox.message}}</p>
+        </div>
+        <div class="col-sm-2">
+            <h4><strong>Time</strong></h4>
+            <p><span am-time-ago="alertBox.timestamp"></span><p/>
+        </div>
+    </div>
+</div>

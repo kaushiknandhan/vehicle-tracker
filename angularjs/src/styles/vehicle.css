@@ -1,0 +1,52 @@
+.vehicle-content{
+    margin-top:5%;
+}
+.vehicle-header{
+    width: 95%;
+    padding:20px 0px 0px 0px;
+    margin: auto;
+
+    background: #36D1DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    text-align: center;
+}
+.nav-tabs>li>a{
+    background-color: white;
+    border-bottom: 4px solid transparent ;
+}
+.nav-tabs>li>a:hover{
+    background-color: white;
+    border-bottom: 4px solid #36D1DC ;
+}
+.tabs-active>a{
+    border-bottom: 4px solid #36D1DC !important;
+    background-color: white!important;
+}
+.tab-content{
+    margin-top: 10px;
+}
+.overview-content{
+    width: 90%;
+    padding:20px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+}
+.green-color{
+    color:green;
+}
+.red-color{
+    color:red;
+}
+.last-service{
+    margin-left: 70%;
+}
+.badge-color{
+    background-color:#5B86E5 !important;
+}
+.nav-pills>li{
+    background-color: white;
+    cursor: pointer;
+}

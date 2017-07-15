@@ -1,0 +1,65 @@
+/**
+ * Created by kaushik nandhan on 7/11/2017.
+ */
+(function () {
+    'use strict';
+    angular.module('tracker',["ui.router","uiGmapgoogle-maps","chart.js","rzModule","angularMoment"])
+        .config(moduleConfig);
+
+    function moduleConfig($stateProvider,$urlRouterProvider) {
+        $stateProvider
+            .state("home",{
+                url:"/home",
+                templateUrl:"app/template/home.template.html",
+                controller:"homeController",
+                controllerAs:"homeVm"
+            })
+            .state("alerts",{
+                url:"/alerts",
+                templateUrl:"app/template/alerts.template.html",
+                controller:"alertsController",
+                controllerAs:"alertsVm"
+            })
+            .state("alerts.highalerts",{
+                url:"/highalerts/:id",
+                templateUrl:"app/template/highalerts.template.html",
+                controller:"highalertsController",
+                controllerAs:"highalertsVm"
+            })
+            .state("vehiclesInfo",{
+                url:"/vehicles/:id",
+                templateUrl:"app/template/vehicle.template.html",
+                controller:"vehicleInfoController",
+                controllerAs:"vehicleInfoVm"
+            })
+            .state("vehiclesInfo.overview",{
+                url:"/overview",
+                templateUrl:"app/template/vehicle-overview.template.html",
+                controller:"vehicleOverviewController",
+                controllerAs:"vehicleOverviewVm"
+            })
+            .state("vehiclesInfo.alerts",{
+                url:"/alerts",
+                templateUrl:"app/template/vehicle-alerts.template.html",
+                controller:"vehicleAlertController",
+                controllerAs:"vehicleAlertVm"
+            })
+            .state("vehiclesInfo.geolocation",{
+                url:"/geolocation",
+                templateUrl:"app/template/vehicle-geolocation.template.html",
+                controller:"vehicleGeolocationController",
+                controllerAs:"vehicleGeolocationVm"
+            })
+            .state("vehiclesInfo.history",{
+                url:"/history",
+                templateUrl:"app/template/vehicle-history.template.html"
+            })
+            .state("vehiclesInfo.history.type",{
+                url:"/:type",
+                templateUrl:"app/template/vehicle-history-type.template.html",
+                controller:"vehicleHistoryTypeController",
+                controllerAs:"vehicleHistoryTypeVm"
+            })
+        $urlRouterProvider.otherwise('/home');
+    }
+})();
