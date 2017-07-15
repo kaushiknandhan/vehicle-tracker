@@ -12,14 +12,9 @@
                 return inputArr;
             }
             else{
-                var resultArr = [];
-                console.log('entered filter');
-                for(var i=0;i<inputArr.length;i++){
-                    if(inputArr[i].priority === priority){
-                        resultArr.push(inputArr[i]);
-                    }
-                }
-                return resultArr;
+                return inputArr.filter(function(alert){
+                    return alert.priority === priority;
+                });
             }
         }
     }
