@@ -17,8 +17,11 @@
 
     <!-- inject:css -->
     <link rel="stylesheet" href="styles/alert.css">
+    <link rel="stylesheet" href="styles/graph.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/map.css">
     <link rel="stylesheet" href="styles/nav-bar.css">
+    <link rel="stylesheet" href="styles/vehicle.css">
     <!-- endinject -->
 
     <!-- app:css -->
@@ -56,8 +59,10 @@
 <script src="/bower_components/js-rich-marker/src/richmarker.js"></script>
 <script src="/bower_components/chart.js/dist/Chart.js"></script>
 <script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="/bower_components/angular-moment/angular-moment.js"></script>
 <!-- endinject -->
 
 <!-- vendor:js -->
@@ -65,12 +70,21 @@
 
 <!-- inject:js -->
 <script src="app/app.js"></script>
-<script src="app/service/vehicle.service.js"></script>
-<script src="app/service/alert.service.js"></script>
-<script src="app/filter/sortFilter.filter.js"></script>
+<script src="app/controller/vehicleOverview.controller.js"></script>
+<script src="app/controller/vehicleInfo.controller.js"></script>
+<script src="app/controller/vehicleHistoryType.controller.js"></script>
+<script src="app/controller/vehicleGeolocation.controller.js"></script>
+<script src="app/controller/vehicleAlert.controller.js"></script>
 <script src="app/controller/home.controller.js"></script>
 <script src="app/controller/highalerts.controller.js"></script>
 <script src="app/controller/alerts.controller.js"></script>
+<script src="app/service/vehicle.service.js"></script>
+<script src="app/service/reading.service.js"></script>
+<script src="app/service/alert.service.js"></script>
+<script src="app/filter/sortFilter.filter.js"></script>
+<script src="app/filter/priority.filter.js"></script>
+<script src="app/directive/alert.directive.js"></script>
+<script src="app/app.constant.js"></script>
 <!-- endinject -->
 
 <!-- app:js -->
