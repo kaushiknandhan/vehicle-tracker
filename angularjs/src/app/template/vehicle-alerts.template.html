@@ -8,7 +8,7 @@
                 <li ng-click="vehicleAlertVm.filterOnPriority('Low')" ng-class="{true:'low-color'}[vehicleAlertVm.selectedPriority === 'Low']"><a>Low<span class="badge badge-color">{{vehicleAlertVm.lowCount}}</span></a></li>
             </ul>
         </div>
-        <div class="col-sm-10 alert-content-box">            
+        <div class="col-sm-10 alert-content-box">
             <tracker-alert alert-box="alert" ng-repeat="alert in vehicleAlertVm.alerts | priorityFilter: vehicleAlertVm.selectedPriority"></tracker-alert>
         </div>
     </div>
