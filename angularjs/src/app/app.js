@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    angular.module('tracker',["ui.router"])
+    angular.module('tracker',["ui.router","uiGmapgoogle-maps"])
         .config(moduleConfig);
 
     function moduleConfig($stateProvider,$urlRouterProvider) {
