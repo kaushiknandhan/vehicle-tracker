@@ -6,8 +6,8 @@
     angular.module('tracker')
         .service('alertService',alertService);
 
-    alertService.$inject = ['$http','$q'];
-    function alertService($http,$q) {
+    alertService.$inject = ['$http','$q','CONFIG'];
+    function alertService($http,$q,CONFIG) {
         var alertVm = this;
         alertVm.getHighAlerts = getHighAlerts;
         alertVm.getVehicleAlerts = getVehicleAlerts;
@@ -17,19 +17,19 @@
 
         // Ajax call to get High Alerts from database for the last two horus
         function getHighAlerts() {
-            return $http.get('http://localhost:9009/api/'+'alerts/highalerts')
+            return $http.get(CONFIG.API_HOST+'alerts/highalerts')
                 .then(successFn,errorFn);
         }
 
         // Ajax call to get High Alerts from database for the last two horus
         function getVehicleAlerts(vechileId,type) {
-            return $http.get('http://localhost:9009/api/'+'/alerts/'+vechileId+'/'+type)
+            return $http.get(CONFIG.API_HOST+'/alerts/'+vechileId+'/'+type)
                 .then(successFn,errorFn);
         }
 
         // Ajax call to get Total number Alerts of a Vehicle from sever
         function getTotalAlertCount(vehicleId,type) {
-            return $http.get('http://localhost:9009/api/'+'/alerts/totalcount/'+vehicleId+'/'+type)
+            return $http.get(CONFIG.API_HOST+'/alerts/totalcount/'+vehicleId+'/'+type)
                 .then(successFn,errorFn);
         }
 
