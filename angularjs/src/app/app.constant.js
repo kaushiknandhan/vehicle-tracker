@@ -6,6 +6,6 @@
 
     angular.module('tracker')
         .constant('CONFIG',{
-            'API_HOST':'http://localhost:9090/api/'
+            'API_HOST':'http://localhost:9009/api/'
         })
 })();
