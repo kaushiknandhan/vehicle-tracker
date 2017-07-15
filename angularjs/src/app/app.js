@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    angular.module('tracker',["ui.router","uiGmapgoogle-maps"])
+    angular.module('tracker',["ui.router","uiGmapgoogle-maps","chart.js","rzModule"])
         .config(moduleConfig);
 
     function moduleConfig($stateProvider,$urlRouterProvider) {
@@ -33,10 +33,10 @@
                 controllerAs:"vehicleInfoVm"
             })
             .state("vehiclesInfo.overview",{
-            url:"/overview",
-            templateUrl:"app/template/vehicle-overview.template.html",
-            controller:"vehicleOverviewController",
-            controllerAs:"vehicleOverviewVm"
+                url:"/overview",
+                templateUrl:"app/template/vehicle-overview.template.html",
+                controller:"vehicleOverviewController",
+                controllerAs:"vehicleOverviewVm"
             })
             .state("vehiclesInfo.alerts",{
                 url:"/alerts",
@@ -49,6 +49,16 @@
                 templateUrl:"app/template/vehicle-geolocation.template.html",
                 controller:"vehicleGeolocationController",
                 controllerAs:"vehicleGeolocationVm"
+            })
+            .state("vehiclesInfo.history",{
+                url:"/history",
+                templateUrl:"app/template/vehicle-history.template.html"
+            })
+            .state("vehiclesInfo.history.type",{
+                url:"/:type",
+                templateUrl:"app/template/vehicle-history-type.template.html",
+                controller:"vehicleHistoryTypeController",
+                controllerAs:"vehicleHistoryTypeVm"
             })
         $urlRouterProvider.otherwise('/home');
     }

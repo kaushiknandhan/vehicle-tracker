@@ -10,9 +10,15 @@
     function readingService($http,$q,CONFIG) {
         var readingVm = this;
         readingVm.get30minsReadings = get30minsReadings;
+        readingVm.getVehicleHistory = getVehicleHistory;
 
         function get30minsReadings(vehicleId) {
             return $http.get(CONFIG.API_HOST+'readings/'+vehicleId+'/MINUTES/30')
+                .then(successFn,errorFn);
+        }
+
+        function getVehicleHistory(vehicleId,timeType,time) {
+            return $http.get(CONFIG.API_HOST+'readings/'+vehicleId+'/'+timeType+'/'+time)
                 .then(successFn,errorFn);
         }
 
