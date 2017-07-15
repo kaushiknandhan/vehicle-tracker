@@ -1,7 +1,9 @@
 .navbar-nav>li{
     border-bottom: 2px solid transparent;
 }
-
+.navbar-brand:hover,.navbar-brand:visited{
+    color:white;
+}
 .navbar-nav>li>a:hover{
     color: white !important;
     background: #36D1DC;
