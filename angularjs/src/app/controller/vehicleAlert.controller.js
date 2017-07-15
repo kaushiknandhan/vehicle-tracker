@@ -18,48 +18,39 @@
 
         init();
 
+        // Get all the Vehicle alerts from the server
         function init() {
-            highCount();
-            mediumCount();
-            lowCount();
-            alertService.getVehicleAlerts($stateParams.id,'All')
+            getCount('HIGH');
+            getCount('MEDIUM');
+            getCount('Low');
+            alertService.getVehicleAlerts($stateParams.id, 'All')
                 .then(function (alerts) {
                     vehicleAlertVm.alerts = alerts;
-                },function (error) {
-                    console.log('some text: '+error);
+                }, function (error) {
+                    console.log('some text: ' + error);
                 });
         }
 
+        // Assign the variable according to the oriority selected
         function filterOnPriority(priority) {
             vehicleAlertVm.selectedPriority = priority;
         }
 
-        function highCount() {
-            alertService.getTotalAlertCount($stateParams.id,'HIGH')
+        // Get the count of the alerts present for a particular vehicle
+        function getCount(priority) {
+            alertService.getTotalAlertCount($stateParams.id, priority)
                 .then(function (count) {
-                    vehicleAlertVm.highCount = count;
-                },function (error) {
-                    console.log('some text: '+error);
+                    if (priority === 'HIGH')
+                        vehicleAlertVm.highCount = count;
+                    else if (priority === 'MEDIUM')
+                        vehicleAlertVm.mediumCount = count;
+                    else
+                        vehicleAlertVm.lowCount = count;
+                }, function (error) {
+                    console.log('some text: ' + error);
                 });
         }
 
-        function mediumCount() {
-            alertService.getTotalAlertCount($stateParams.id,'MEDIUM')
-                .then(function (count) {
-                    vehicleAlertVm.mediumCount = count;
-                },function (error) {
-                    console.log('some text: '+error);
-                });
-        }
-
-        function lowCount() {
-            alertService.getTotalAlertCount($stateParams.id,'Low')
-                .then(function (count) {
-                    vehicleAlertVm.lowCount = count;
-                },function (error) {
-                    console.log('some text: '+error);
-                });
-        }
     }
 
 })();
