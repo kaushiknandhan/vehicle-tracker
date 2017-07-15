@@ -14,6 +14,7 @@
         vehicleGeolocationVm.geolocations  = [];
 
         init();
+        // get last 30 minutes readings from the server
         function init() {
             readingService.get30minsReadings($stateParams.id)
                 .then(function (geoReadings) {

@@ -13,7 +13,7 @@
         vehicleInfoVm.totalCount = 0;
 
         init();
-
+        // get the vehicle information in detail
         function init() {
             getAlertCount();
             vehicleService.getVehicleInfo($stateParams.id)
@@ -23,7 +23,7 @@
                     console.log('Some error: '+error);
                 });
         }
-
+        // get total Alert count of a vehicle
         function getAlertCount() {
             alertService.getTotalAlertCount($stateParams.id,'All')
                 .then(function (totalCount) {

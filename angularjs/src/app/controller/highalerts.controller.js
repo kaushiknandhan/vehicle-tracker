@@ -11,7 +11,7 @@
         var highalertsVm = this;
 
         init();
-
+        // Get high priority alerts
         function init() {
             highalertsVm.alerts = [];
             alertService.getVehicleAlerts($stateParams.id,'HIGHALERTS')

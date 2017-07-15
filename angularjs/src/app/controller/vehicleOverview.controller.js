@@ -12,7 +12,7 @@
         vehicleOverviewVm.overview = {};
 
         init();
-
+        // Initialize function to get the vehicle information
         function init() {
             vehicleService.getVehicleInfo($stateParams.id)
                 .then(function (vehicle) {

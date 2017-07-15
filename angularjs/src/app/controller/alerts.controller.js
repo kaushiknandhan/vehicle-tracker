@@ -16,6 +16,7 @@
 
         init();
 
+        // initialize high alert when the controller is loaded
         function init() {
             alertService.getHighAlerts()
                 .then(function (highAlerts) {
@@ -25,18 +26,14 @@
                 });
         }
 
+        // check if the highAlerts array is empty or not
         function isLengthZero() {
          return (alertsVm.highAlerts.length == 0)?true:false;
         }
 
+        // Assign the sort Type variable to desc or asc
         function sortList() {
-            // if(alertsVm.sortType === 'desc'){
-            //     alertsVm.sortType = 'asc';
-            // }else{
-            //     alertsVm.sortType = 'desc';
-            // }
             (alertsVm.sortType === 'desc')?alertsVm.sortType = 'asc':alertsVm.sortType = 'desc';
-
         }
     }
 })();

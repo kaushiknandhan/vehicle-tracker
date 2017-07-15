@@ -12,6 +12,7 @@
         homeVm.vehicles = [];
 
         init();
+        // get all vehicles from server
         function init() {
             vehicleService.getVehicles()
                 .then(function (vehicles) {
