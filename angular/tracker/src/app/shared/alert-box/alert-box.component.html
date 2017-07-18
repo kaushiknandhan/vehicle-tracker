@@ -1,0 +1,16 @@
+<div class="highalert-detail-box text-center" [ngClass]="{'low-color':alertBox.priority==='Low','medium-color':alertBox.priority==='MEDIUM','high-color':alertBox.priority==='HIGH'}">
+  <div class="row">
+    <div class="col-sm-2">
+      <h4><strong>PRIORITY</strong></h4>
+      <p>{{alertBox.priority}}</p>
+    </div>
+    <div class="col-sm-8">
+      <h4><strong>Reason</strong></h4>
+      <p>{{alertBox.message}}</p>
+    </div>
+    <div class="col-sm-2">
+      <h4><strong>Time</strong></h4>
+      <p>{{alertBox.timestamp | date}}</p>
+    </div>
+  </div>
+</div>
