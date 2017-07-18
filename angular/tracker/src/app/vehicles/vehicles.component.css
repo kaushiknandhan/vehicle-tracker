@@ -1,0 +1,44 @@
+.vehicle-intro{
+  width: 100%;
+  padding:20px;
+  margin: auto;
+  margin-bottom: 5px;
+  color: white;
+  background: #159957;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #155799, #159957);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #155799, #159957); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: relative;
+}
+
+.service-date{
+  position: absolute;
+  bottom: 0;
+  right:5%;
+}
+nav{
+  border: transparent;
+}
+.nav-tabs>li:hover{
+  color: white;
+  background-color:  #243B55!important;
+}
+.nav-tabs>li>a{
+  color: white;
+  border-bottom: 2px solid transparent;
+}
+.nav-tabs>li>a:hover,.nav-tabs>li>a:visited{
+  color: white !important;
+  background-color: #243B55;
+  font-weight: bold;
+  font-size: small;
+  border-bottom: 2px solid white;
+}
+.navtab-active>a{
+  color: white !important;
+  background-color: #243B55;
+  font-weight: bold;
+  font-size: small;
+  border-bottom: 2px solid white!important;
+}
+
+
