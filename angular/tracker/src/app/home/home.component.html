@@ -1,0 +1,13 @@
+<div class="home-content">
+  <div class="container">
+    <div class="row">
+      <div class=" col-lg-4 col-sm-4 col-md-6 col-xs-12" *ngFor="let vehicle of vehicles">
+        <div class="vehicle-item" routerLink="/vehicles/{{vehicle.vin}}">
+          <h4>{{vehicle.model}}-({{vehicle.year}})</h4>
+          <p class="pull-right vehicle-model"><strong>{{vehicle.make}}</strong></p>
+          <p>{{vehicle.vin}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
