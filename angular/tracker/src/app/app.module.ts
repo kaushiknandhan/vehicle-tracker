@@ -18,6 +18,8 @@ import { AlertComponent } from './vehicles/alert/alert.component';
 import { LocationComponent } from './vehicles/location/location.component';
 import { GraphComponent } from './vehicles/graph/graph.component';
 import { VehicleItemComponent } from './shared/vehicle-item/vehicle-item.component';
+import {AlertService} from "./vehicles/alert/alert.service";
+import { PriorityAlertComponent } from './vehicles/alert/priority-alert/priority-alert.component';
 
 
 const appRoutes : Routes =[
@@ -26,7 +28,11 @@ const appRoutes : Routes =[
     {path:':id',component:HighalertDetailsComponent}
   ]},
   {path:'vehicles/:vin',component:VehiclesComponent,children:[
-    {path:'alert',component:AlertComponent},{path:'location',component:LocationComponent},{path:'graph',component:GraphComponent}
+    {path:'alert',component:AlertComponent,children:[
+      {path:':priority',component:PriorityAlertComponent}
+    ]},
+    {path:'location',component:LocationComponent},
+    {path:'graph',component:GraphComponent}
   ]},
   {path:'',redirectTo:'/home',pathMatch:'full'}
   ];
@@ -44,7 +50,8 @@ const appRoutes : Routes =[
     AlertComponent,
     LocationComponent,
     GraphComponent,
-    VehicleItemComponent
+    VehicleItemComponent,
+    PriorityAlertComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,7 @@ const appRoutes : Routes =[
     HttpModule,
     RouterModule.forRoot(appRoutes,{useHash:true})
   ],
-  providers: [HomeService,HighAlertService,VehicleService],
+  providers: [HomeService,HighAlertService,VehicleService,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
