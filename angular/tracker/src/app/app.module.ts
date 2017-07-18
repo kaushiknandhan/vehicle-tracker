@@ -17,6 +17,7 @@ import {VehicleService} from "./vehicles/vehicle.service";
 import { AlertComponent } from './vehicles/alert/alert.component';
 import { LocationComponent } from './vehicles/location/location.component';
 import { GraphComponent } from './vehicles/graph/graph.component';
+import { VehicleItemComponent } from './shared/vehicle-item/vehicle-item.component';
 
 
 const appRoutes : Routes =[
@@ -42,7 +43,8 @@ const appRoutes : Routes =[
     VehiclesComponent,
     AlertComponent,
     LocationComponent,
-    GraphComponent
+    GraphComponent,
+    VehicleItemComponent
   ],
   imports: [
     BrowserModule,

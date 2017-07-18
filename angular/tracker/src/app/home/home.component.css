@@ -1,26 +1,2 @@
 
-.vehicle-item{
-  padding: 5px;
-  margin: auto;
-  width: 100%;
-  margin-bottom: 15px;
-  border-top: 4px solid transparent;
-  height: 100px;
-  text-decoration: none;
-  color:#527bb5;
-  background-color: #141E30;
-}
-.vehicle-item:hover{
-  padding: 5px;
-  margin: auto;
-  width: 100%;
-  margin-bottom: 15px;
-  border-top: 4px solid white;
-  text-decoration: none;
-  color:white;
-  font-weight: bold;
-  cursor: pointer;
 
-  background-color: #141E30;
-  transition: All 0.5s;
-}
