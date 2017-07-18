@@ -20,7 +20,8 @@ import { GraphComponent } from './vehicles/graph/graph.component';
 import { VehicleItemComponent } from './shared/vehicle-item/vehicle-item.component';
 import {AlertService} from "./vehicles/alert/alert.service";
 import { PriorityAlertComponent } from './vehicles/alert/priority-alert/priority-alert.component';
-
+import { AgmCoreModule } from '@agm/core';
+import {ReadingService} from "./vehicles/reading.service";
 
 const appRoutes : Routes =[
   {path:'home',component:HomeComponent},
@@ -57,9 +58,12 @@ const appRoutes : Routes =[
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes,{useHash:true})
+    RouterModule.forRoot(appRoutes,{useHash:true}),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBN4sRHkoDk6nE-H_kHl3RE4M3eRmRx-2E'
+    })
   ],
-  providers: [HomeService,HighAlertService,VehicleService,AlertService],
+  providers: [HomeService,HighAlertService,VehicleService,AlertService,ReadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
