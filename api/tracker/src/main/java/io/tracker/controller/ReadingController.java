@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import io.tracker.domain.Reading;
 import io.tracker.service.ReadingService;
+
 /**
- * This class is a ReadingController, save the raw readings of a vehicle and get the readings of the vehicle
- * depending on the timestamp
- * Injects ReadingService
+ * This class is a ReadingController, save the raw readings of a vehicle and get
+ * the readings of the vehicle depending on the timestamp Injects ReadingService
+ * 
  * @author kaushik nandhan
  *
  */
@@ -27,28 +27,34 @@ public class ReadingController {
 
 	@Autowired
 	private ReadingService readingService;
-	
+
 	/**
-	 * This method is used to save the readings into the database. And create alerts depending on the 
-	 * conditions given
-	 * Rule: engineRpm > readlineRpm, Priority: HIGH
-	 *	Rule: fuelVolume < 10% of maxFuelVolume, Priority: MEDIUM
-	 *	Rule: tire pressure of any tire < 32psi || > 36psi , Priority: LOW
-	 *	Rule: engineCoolantLow = true || checkEngineLightOn = true, Priority: LOW 
+	 * This method is used to save the readings into the database. And create
+	 * alerts depending on the conditions given Rule: engineRpm > readlineRpm,
+	 * Priority: HIGH Rule: fuelVolume < 10% of maxFuelVolume, Priority: MEDIUM
+	 * Rule: tire pressure of any tire < 32psi || > 36psi , Priority: LOW Rule:
+	 * engineCoolantLow = true || checkEngineLightOn = true, Priority: LOW
+	 * 
 	 * @param reading
 	 * @return reading
 	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Reading saveReading(@RequestBody Reading reading) {
 		Reading existingReading = readingService.saveReading(reading);
+		readingService.checkForAlerts(existingReading);
 		return existingReading;
 	}
-	
+
 	/**
-	 * This method gives the readings of a vehicle depending on the time stamp chosen.
-	 * @param vin - vin number if vehicle
-	 * @param timeType - MINUTES/HOURS/DAYS
-	 * @param time - 1 to any time
+	 * This method gives the readings of a vehicle depending on the time stamp
+	 * chosen.
+	 * 
+	 * @param vin
+	 *            - vin number if vehicle
+	 * @param timeType
+	 *            - MINUTES/HOURS/DAYS
+	 * @param time
+	 *            - 1 to any time
 	 * @return
 	 */
 	@RequestMapping(path = "/{vin}/{timeType}/{time}", method = RequestMethod.GET)

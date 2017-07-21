@@ -49,9 +49,10 @@ public class ReadingServiceImpl implements ReadingService {
 	 * Saves the reading and the Tire Information to the database. Creates
 	 * alerts if found and stores the same in the database. If high alert is
 	 * found, sends an email to the user. Does Asynchronous operation
+	 * 
 	 * @throws VehicleNotFound
 	 */
-	@Async
+
 	public Reading saveReading(Reading reading) {
 
 		// Persist the tires information of a reading
@@ -60,32 +61,19 @@ public class ReadingServiceImpl implements ReadingService {
 
 		// Persist the Readings information of a vehicle
 		Reading existingReading = readingRepository.save(reading);
-
-		// Check if a vehicle present with vin number, if present checks for
-		// alerts
-		// else throws an exception
-		if (vehicleRepository.findByVin(existingReading.getVin()) != null) {
-			
-			// Check for any Alerts present in the readings
-			checkForAlerts(existingReading);
-
-			// Check for tire Alerts present in the readings
-			checkForTireAlerts(existingReading);
-		} else {
-			throw new VehicleNotFound("No Vehicle present with the VIN " + existingReading.getVin());
-		}
-
 		return existingReading;
 	}
 
 	/**
-	 *  check for the alerts if present depending on the conditions given
-	 *  Rule: engineRpm > readlineRpm, Priority: HIGH
-	 *  Rule: fuelVolume < 10% of maxFuelVolume, Priority: MEDIUM
-	 *  Rule: engineCoolantLow = true || checkEngineLightOn = true, Priority: LOW
+	 * check for the alerts if present depending on the conditions given Rule:
+	 * engineRpm > readlineRpm, Priority: HIGH Rule: fuelVolume < 10% of
+	 * maxFuelVolume, Priority: MEDIUM Rule: engineCoolantLow = true ||
+	 * checkEngineLightOn = true, Priority: LOW
+	 * 
 	 * @param existingReading
 	 */
-	private void checkForAlerts(Reading existingReading) {
+	@Async
+	public void checkForAlerts(Reading existingReading) {
 		// Get the Vehicle information from the Vehicles database.
 		Vehicle existingVehicle = vehicleRepository.findByVin(existingReading.getVin());
 
@@ -105,11 +93,15 @@ public class ReadingServiceImpl implements ReadingService {
 			createAlert("The Engine Coolant is Low for the Vehicle", "Low", existingReading.getVin(), new Date());
 		}
 
+		// Check for tire Alerts present in the readings
+		checkForTireAlerts(existingReading);
+
 	}
-	
+
 	/**
-	 *  check for the TIRE alerts if present depending on the conditions given
-	 *	Rule: tire pressure of any tire < 32psi || > 36psi , Priority: LOW
+	 * check for the TIRE alerts if present depending on the conditions given
+	 * Rule: tire pressure of any tire < 32psi || > 36psi , Priority: LOW
+	 * 
 	 * @param existingReading
 	 */
 	private void checkForTireAlerts(Reading existingReading) {
@@ -132,11 +124,17 @@ public class ReadingServiceImpl implements ReadingService {
 	}
 
 	/**
-	 * Persists the alert message to the database. If priority is HIGH triggers an email as well
-	 * @param message - String - An alert message 
-	 * @param priority -  String - HIGH/MEDIUM/Low
-	 * @param vin - String - Vin number
-	 * @param timestamp - Date - current data
+	 * Persists the alert message to the database. If priority is HIGH triggers
+	 * an email as well
+	 * 
+	 * @param message
+	 *            - String - An alert message
+	 * @param priority
+	 *            - String - HIGH/MEDIUM/Low
+	 * @param vin
+	 *            - String - Vin number
+	 * @param timestamp
+	 *            - Date - current data
 	 */
 	private void createAlert(String message, String priority, String vin, Date timestamp) {
 		Alert alert = new Alert();
@@ -145,7 +143,7 @@ public class ReadingServiceImpl implements ReadingService {
 		alert.setVin(vin);
 		alert.setTimestamp(timestamp);
 		Alert existingAlert = alertRepository.save(alert);
-		
+
 		// send Email alert to user of the priority is HIGH
 		if (existingAlert.getPriority().equals("HIGH")) {
 			sendEmailAlert(existingAlert);
@@ -154,7 +152,9 @@ public class ReadingServiceImpl implements ReadingService {
 
 	/**
 	 * Send email to the user reagrding the Alert
-	 * @param existingAlert - Alert
+	 * 
+	 * @param existingAlert
+	 *            - Alert
 	 */
 	private void sendEmailAlert(Alert existingAlert) {
 		try {
@@ -163,27 +163,34 @@ public class ReadingServiceImpl implements ReadingService {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Saves the Tire information from a vehicles reading
-	 * @param newTire Tire
-	 * @return  Tire
+	 * 
+	 * @param newTire
+	 *            Tire
+	 * @return Tire
 	 */
 	private Tire saveTire(Tire newTire) {
 		return tireRepository.save(newTire);
 	}
-	
+
 	/**
-	 * get Readings of a vehicle based on the vin, timestamp, time given. This data is used to plot the
-	 * signal data and also to get the geo-location of a vehicle any time from cyrrent time. 
-	 * @param vin - String
-	 * @param timeType - String
-	 * @param time - String
-	 * @return - List<Reading> 
+	 * get Readings of a vehicle based on the vin, timestamp, time given. This
+	 * data is used to plot the signal data and also to get the geo-location of
+	 * a vehicle any time from cyrrent time.
+	 * 
+	 * @param vin
+	 *            - String
+	 * @param timeType
+	 *            - String
+	 * @param time
+	 *            - String
+	 * @return - List<Reading>
 	 */
 	public List<Reading> getReadingsWithTime(String vin, String timeType, String time) {
 		List<Reading> vehicleReagings = new ArrayList<>();
-		
+
 		// If the timeType is All, get all the readings of a vehicle
 		if (timeType.equals("All")) {
 			vehicleReagings = readingRepository.findByVin(vin);
@@ -191,7 +198,8 @@ public class ReadingServiceImpl implements ReadingService {
 			Date currentDate = new Date();
 			// Gets the time from now depending on the paramets
 			Date beforeTime = getBeforeTime(timeType, time);
-			// Gets vehicle readings after between the current time and the given before time 
+			// Gets vehicle readings after between the current time and the
+			// given before time
 			vehicleReagings = readingRepository.findReadingsWithTime(vin, currentDate, beforeTime);
 
 		}
@@ -200,6 +208,7 @@ public class ReadingServiceImpl implements ReadingService {
 
 	/**
 	 * Gives the timestamp before certain DAYS/MINUTES/HOURS from now
+	 * 
 	 * @param timeType
 	 * @param time
 	 * @return Date

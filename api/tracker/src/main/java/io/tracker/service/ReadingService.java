@@ -33,4 +33,6 @@ public interface ReadingService {
 	 * @return - List<Reading> 
 	 */
 	public List<Reading> getReadingsWithTime(String vin, String timeType, String time);
+	
+	public void checkForAlerts(Reading existingReading);
 }
