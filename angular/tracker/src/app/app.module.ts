@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import {ReadingService} from "./vehicles/reading.service";
 import { GraphPlotComponent } from './vehicles/graph/graph-plot/graph-plot.component';
 import {ChartsModule} from "ng2-charts/index";
+import {MomentModule} from "angular2-moment";
 
 const appRoutes : Routes =[
   {path:'home',component:HomeComponent},
@@ -67,7 +68,8 @@ const appRoutes : Routes =[
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBN4sRHkoDk6nE-H_kHl3RE4M3eRmRx-2E'
     }),
-    ChartsModule
+    ChartsModule,
+    MomentModule
   ],
   providers: [HomeService,HighAlertService,VehicleService,AlertService,ReadingService],
   bootstrap: [AppComponent]
