@@ -1,6 +1,6 @@
     <div class="col-sm-2">
       <ul class="nav nav-pills nav-stacked text-center">
-        <li [routerLink]="['HIGH']" (click)="setColorByPriority('HIGH')" [ngClass]="{'high-color':selectedPriority === 'HIGH'}"><a>High<span class="badge badge-color">{{lowAlertsCount}}</span></a></li>
+        <li [routerLink]="['HIGH']" routerLinkActive="high-color" (click)="setColorByPriority('HIGH')" [ngClass]="{'high-color':selectedPriority === 'HIGH'}"><a>High<span class="badge badge-color">{{lowAlertsCount}}</span></a></li>
         <li [routerLink]="['MEDIUM']" (click)="setColorByPriority('MEDIUM')" [ngClass]="{'medium-color':selectedPriority === 'MEDIUM'}"><a>Medium<span class="badge badge-color">{{mediumAlertsCount}}</span></a></li>
         <li [routerLink]="['Low']" (click)="setColorByPriority('Low')" [ngClass]="{'low-color':selectedPriority === 'Low'}"><a>Low<span class="badge badge-color">{{lowAlertsCount}}</span></a></li>
       </ul>

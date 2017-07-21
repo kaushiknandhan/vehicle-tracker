@@ -19,3 +19,10 @@ body{
 .home-content{
   margin-top:5%;
 }
+.nav-stacked>li>a,.nav-stacked>li>a:hover{
+  background-color: #141E30;
+  color:white !important;
+  border-right: 5px solid transparent;
+  cursor: pointer;
+}
+

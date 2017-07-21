@@ -22,6 +22,8 @@ import {AlertService} from "./vehicles/alert/alert.service";
 import { PriorityAlertComponent } from './vehicles/alert/priority-alert/priority-alert.component';
 import { AgmCoreModule } from '@agm/core';
 import {ReadingService} from "./vehicles/reading.service";
+import { GraphPlotComponent } from './vehicles/graph/graph-plot/graph-plot.component';
+import {ChartsModule} from "ng2-charts/index";
 
 const appRoutes : Routes =[
   {path:'home',component:HomeComponent},
@@ -33,7 +35,9 @@ const appRoutes : Routes =[
       {path:':priority',component:PriorityAlertComponent}
     ]},
     {path:'location',component:LocationComponent},
-    {path:'graph',component:GraphComponent}
+    {path:'graph',component:GraphComponent,children:[
+      {path:':signal',component:GraphPlotComponent}
+    ]}
   ]},
   {path:'',redirectTo:'/home',pathMatch:'full'}
   ];
@@ -52,7 +56,8 @@ const appRoutes : Routes =[
     LocationComponent,
     GraphComponent,
     VehicleItemComponent,
-    PriorityAlertComponent
+    PriorityAlertComponent,
+    GraphPlotComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ const appRoutes : Routes =[
     RouterModule.forRoot(appRoutes,{useHash:true}),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBN4sRHkoDk6nE-H_kHl3RE4M3eRmRx-2E'
-    })
+    }),
+    ChartsModule
   ],
   providers: [HomeService,HighAlertService,VehicleService,AlertService,ReadingService],
   bootstrap: [AppComponent]

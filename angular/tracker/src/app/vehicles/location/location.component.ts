@@ -18,7 +18,6 @@ export class LocationComponent implements OnInit {
   constructor(private activeRoute:ActivatedRoute,private readingService:ReadingService) {
     this.activeRoute.parent.params.subscribe(
       params=>{
-        console.log(this.vinNumber);
         this.vinNumber = params['vin'];
       }
     )

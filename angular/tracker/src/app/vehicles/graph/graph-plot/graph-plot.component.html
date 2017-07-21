@@ -1,0 +1,128 @@
+<div class="graph-plot">
+  <div class="row" *ngIf="signal === 'All'">
+    <div class="time-buttons">
+      <div class="btn-group time-buttons">
+        <button type="button" class="btn btn-primary" (click)="readingWithTime('DAYS',10)">10 Days</button>
+        <button type="button" class="btn btn-primary" (click)="readingWithTime('HOURS',12)">12 hours</button>
+        <button type="button" class="btn btn-primary"  (click)="readingWithTime('MINUTES',10)">10 mins</button>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="signal === 'All' && readingsArr.length !== 0">
+    <div class="col-sm-6">
+      <canvas *ngIf="speedData[0].data.length !== 0" baseChart width="300" height="300"
+              [datasets]="speedData"
+              [labels]="timestampArr"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+              [colors]="lineChartColors"
+              [chartType]="lineChartType"
+              ></canvas>
+    </div>
+    <div class="col-sm-6">
+      <canvas *ngIf="engineRpmData[0].data.length !== 0" baseChart width="300" height="300"
+              [datasets]="engineRpmData"
+              [labels]="timestampArr"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+              [colors]="lineChartColors"
+              [chartType]="lineChartType"
+      ></canvas>
+    </div>
+  </div>
+  <div class="row" *ngIf="signal === 'All' && readingsArr.length !== 0">
+    <div class="col-sm-6">
+      <canvas *ngIf="engineHpData[0].data.length !== 0" baseChart width="300" height="300"
+              [datasets]="engineHpData"
+              [labels]="timestampArr"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+              [colors]="lineChartColors"
+              [chartType]="lineChartType"
+      ></canvas>
+    </div>
+    <div class="col-sm-6">
+      <canvas *ngIf="fuelVolumeData[0].data.length !== 0" baseChart width="300" height="300"
+              [datasets]="fuelVolumeData"
+              [labels]="timestampArr"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend"
+              [colors]="lineChartColors"
+              [chartType]="lineChartType"
+      ></canvas>
+    </div>
+  </div>
+  <div *ngIf="signal !== 'All'">
+  <div class="row text-center">
+    <form>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label>Select Time Period</label>
+          <select [(ngModel)]="selectedTime" (ngModelChange)="onChange($event)" name="timeStamp"  class="form-control" >
+            <option *ngFor="let timeStamp of timesStamps" value="{{timeStamp}}">{{timeStamp}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <label>Enter the DAYS/HOURS/MINUTES from now </label>
+        <input class="form-control" [(ngModel)]="timeValue" name = "timeValue" placeholder="Example: 1,2,3 (or) 23" />
+      </div>
+      <div class="col-sm-3">
+        <button class="btn btn-success btn-analyze" (click)="readingWithTime(selectedTime,timeValue)">Analyze</button>
+      </div>
+    </form>
+  </div>
+    <div class="row" *ngIf="speedData[0].data.length !== 0 && signal === 'speed'">
+      <div class="col-sm-12" >
+        <h3 class="text-center">Vehicle Speed Graph</h3>
+        <canvas baseChart width="300" height="200"
+                [datasets]="speedData"
+                [labels]="timestampArr"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [colors]="lineChartColors"
+                [chartType]="barChartType"
+        ></canvas>
+      </div>
+    </div>
+    <div class="row" *ngIf="engineRpmData[0].data.length !== 0 && signal === 'engineRpm'">
+      <div class="col-sm-12" >
+        <h3 class="text-center">Engine Rpm Graph</h3>
+        <canvas baseChart width="300" height="200"
+                [datasets]="engineRpmData"
+                [labels]="timestampArr"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [colors]="lineChartColors"
+                [chartType]="barChartType"
+        ></canvas>
+      </div>
+    </div>
+    <div class="row" *ngIf="engineHpData[0].data.length !== 0 && signal === 'engineHp'">
+      <div class="col-sm-12" >
+        <h3 class="text-center">EngineHp Data Graph</h3>
+        <canvas baseChart width="300" height="200"
+                [datasets]="engineHpData"
+                [labels]="timestampArr"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [colors]="lineChartColors"
+                [chartType]="barChartType"
+        ></canvas>
+      </div>
+    </div>
+    <div class="row" *ngIf="fuelVolumeData[0].data.length !== 0 && signal === 'fuelVolume'">
+      <div class="col-sm-12" >
+        <h3 class="text-center">Fuel Volume Graph</h3>
+        <canvas baseChart width="300" height="200"
+                [datasets]="fuelVolumeData"
+                [labels]="timestampArr"
+                [options]="lineChartOptions"
+                [legend]="lineChartLegend"
+                [colors]="lineChartColors"
+                [chartType]="barChartType"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+</div>

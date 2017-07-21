@@ -13,6 +13,7 @@ export class VehiclesComponent implements OnInit {
   vehicleInfo:Vehicle;
   vinNumber:string;
   totalAlertCount:number;
+
   constructor(private activeRoute:ActivatedRoute,private vehicleService:VehicleService) {
     this.activeRoute.params.subscribe(
       params =>  {
@@ -36,7 +37,5 @@ export class VehiclesComponent implements OnInit {
         data=>this.totalAlertCount= data,
         error=>console.log(error)
       );
-
   }
-
 }

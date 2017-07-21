@@ -30,7 +30,6 @@ export class PriorityAlertComponent implements OnInit {
    }
 
   getVehicleAlerts(vin,type){
-    console.log('get vehicle alerts');
     this.alertService.getVehicleAlerts(this.vinNumber,this.priorityType)
       .subscribe(
         data=>this.priorityAlert = data,
