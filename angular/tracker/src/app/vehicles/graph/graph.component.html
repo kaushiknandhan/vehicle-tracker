@@ -1,0 +1,12 @@
+<div class="col-sm-2">
+  <ul class="nav nav-pills nav-stacked text-center">
+    <li [routerLink]="['All']" routerLinkActive="signal-active"><a >All</a></li>
+    <li [routerLink]="['speed']" routerLinkActive="signal-active"><a>Speed</a></li>
+    <li [routerLink]="['engineRpm']" routerLinkActive="signal-active"><a>engineRpm</a></li>
+    <li [routerLink]="['engineHp']" routerLinkActive="signal-active"><a>engineHp</a></li>
+    <li [routerLink]="['fuelVolume']" routerLinkActive="signal-active"><a>fuelVolume</a></li>
+  </ul>
+</div>
+<div class="col-sm-10">
+  <router-outlet></router-outlet>
+</div>

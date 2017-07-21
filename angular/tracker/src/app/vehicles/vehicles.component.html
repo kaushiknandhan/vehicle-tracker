@@ -1,0 +1,26 @@
+<div class="home-content">
+  <div class="container">
+    <div class="row">
+      <div  *ngIf="vehicleInfo" class="vehicle-intro text-center">
+        <h1>{{vehicleInfo.make}}-{{vehicleInfo.model}}({{vehicleInfo.year}})</h1>
+        <h3><strong>{{vehicleInfo.redlineRpm | number}}</strong>(RPM)</h3>
+        <h3><strong>{{vehicleInfo.maxFuelVolume}}</strong> ltrs (MAX  FUEL)</h3>
+        <h5 class="service-date">last Service on: {{vehicleInfo.lastServiceDate | date}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <nav class="navbar">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li routerLinkActive="nav-active"><a [routerLink]="['alert']">Alerts<span class="badge badge-color">{{totalAlertCount}}</span></a></li>
+            <li routerLinkActive="nav-active"><a [routerLink]="['location']">Geolocation</a></li>
+            <li routerLinkActive="nav-active"><a [routerLink]="['graph']">Graphs</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+    <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

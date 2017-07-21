@@ -1,0 +1,19 @@
+.high-color{
+  border-left: 5px solid #D31027 !important;
+}
+.medium-color{
+  border-left: 5px solid #ff9529 !important;
+}
+.low-color{
+  border-left: 5px solid #fbff22 !important;
+}
+.highalert-detail-box{
+  width: 90%;
+  padding:20px;
+  margin: auto;
+  background-color: white;
+  border-left: 5px solid transparent;
+  margin-bottom: 1%;
+  box-shadow: 4px 4px 4px black;
+  position:relative;
+}

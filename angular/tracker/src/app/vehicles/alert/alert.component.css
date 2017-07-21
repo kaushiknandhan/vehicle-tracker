@@ -1,0 +1,7 @@
+.alert-content-box{
+  min-height: 200px;
+  max-height: 530px;
+  overflow: scroll;
+}
+
+

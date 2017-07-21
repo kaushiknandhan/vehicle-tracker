@@ -1,0 +1,21 @@
+<div class="high-alert-content">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-12">
+        <h3 *ngIf="isLengthZero()" class="white-color">NO HIGH Alerts!!! From the Last 2 HOURS</h3>
+        <h3 *ngIf="!isLengthZero()" class="white-color">HIGH Alerts From the Last 2 HOURS</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <button  *ngIf="!isLengthZero()" class="btn btn-primary order-btn" (click)="sortList()">{{sortType}}</button>
+        <div class="highalert-box" *ngFor="let alert of  highAlert | sortPipe:sortType" [routerLink]="[alert.vin]" routerLinkActive="highalert-color">
+          <p>{{alert.vin}} - <strong>({{alert.alertCount}})</strong></p>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

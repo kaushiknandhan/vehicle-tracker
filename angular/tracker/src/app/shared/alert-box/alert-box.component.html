@@ -1,0 +1,5 @@
+<div class="highalert-detail-box" [ngClass]="{'low-color':alertBox.priority==='Low','medium-color':alertBox.priority==='MEDIUM','high-color':alertBox.priority==='HIGH'}">
+  <p><strong>{{alertBox.priority}}</strong></p>
+  <p><strong>Message:</strong>{{alertBox.message}}</p>
+  <p class="pull-right">{{alertBox.timestamp | amCalendar}}</p>
+</div>

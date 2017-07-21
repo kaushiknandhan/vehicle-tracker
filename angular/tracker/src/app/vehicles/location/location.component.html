@@ -1,0 +1,6 @@
+<div class="gmap-location">
+  <agm-map *ngIf="isReadingsPresent()" [zoom]="zoomNumber" [latitude]="latitude" [longitude]="longitude">
+    <agm-marker [latitude]="reading.latitude" [longitude]="reading.longitude" *ngFor="let reading of locationReadings"></agm-marker>
+  </agm-map>
+  <h2 *ngIf="!isReadingsPresent()" class="white-color text-center">No Readings are present 30 minutes before from now!!!!</h2>
+</div>
